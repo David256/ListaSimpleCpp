@@ -1,4 +1,5 @@
 #include <iostream>
+#include "lista.h"
 
 /* Mmm... Manipulador Mmmm... */
 
