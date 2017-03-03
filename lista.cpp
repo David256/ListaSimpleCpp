@@ -31,6 +31,12 @@ bool Lista::agregar_elemento(int lugar, struct nodo * n)
 		return true;
 	}
 
+	if (dimension() == 1)
+	{
+		cabeza->next = n;
+		return true;
+	}
+
 	struct nodo * temporal = cabeza;
 	int contador = 0;
 	while (temporal->next != NULL)
