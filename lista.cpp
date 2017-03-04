@@ -5,11 +5,19 @@
 
 using namespace std;
 
+
+/**
+ * Constructor de la clase.
+ */
 Lista::Lista(void)
 {
 	cabeza = NULL;
 }
 
+
+/**
+ * Destructor de la clase.
+ */
 Lista::~Lista(void)
 {
 	cabeza = NULL;
@@ -17,6 +25,14 @@ Lista::~Lista(void)
 	cout << "Objeto de Lista borrado." << endl;
 }
 
+
+/**
+ * Agrega una estructura nodo en la posición deseada.
+ * 
+ * @param  lugar lugar donde insertaremos.
+ * @param  n     puntero a estructura nodo.
+ * @return       true si es exitoso, false si hay problemas.
+ */
 bool Lista::agregar_elemento(int lugar, struct nodo * n)
 {
 	if (cabeza == NULL)
@@ -57,6 +73,14 @@ bool Lista::agregar_elemento(int lugar, struct nodo * n)
 	return true;
 }
 
+
+/**
+ * Elimina, de la lista, el elemento ubicado en la
+ * posición solicitada.
+ * 
+ * @param  lugar entero del lugar desde donde eliminaremos
+ * @return       true si es exitoso, false si la posición solicitada es mayor que la dimensión.
+ */
 bool Lista::eliminar_elemento(int lugar)
 {
 	if (cabeza == NULL)
@@ -90,10 +114,24 @@ bool Lista::eliminar_elemento(int lugar)
 	return true;
 }
 
+
+/**
+ * Retorna una estructura nodo ubicada en la posición
+ * solicitada. Si la posición de la cual queremos obtener
+ * el nodo, es mayor que la dimensión de la lista, entonces
+ * retorna el último.
+ * 
+ * @param  lugar entero del lugar desde donde queremos
+ *               sacar el elemento.
+ * @return       estructura de tipo nodo.
+ */
 struct nodo * Lista::obtener_elemento(int lugar)
 {
+	// si es cero, sacamos la cabeza.
 	if (lugar == 0)
 		return cabeza;
+	// si el número es mayor que la dimension,
+	// retornamos el último.
 	if (lugar > dimension())
 		return obtener_ultimo();
 
@@ -109,8 +147,13 @@ struct nodo * Lista::obtener_elemento(int lugar)
 	}
 }
 
+
+/**
+ * Imprime una representación de la lista.
+ */
 void Lista::imprimir(void)
 {
+	// Si no hay nada, imprimimos una lista vacia.
 	if (cabeza == NULL)
 	{
 		cout << "[]" << endl;
@@ -135,6 +178,12 @@ void Lista::imprimir(void)
 	cout << "]" << endl;
 }
 
+
+/**
+ * Retorna el número de elementos en la lista.
+ * 
+ * @return  entero
+ */
 int Lista::dimension(void)
 {
 	if (cabeza == NULL)
@@ -151,6 +200,11 @@ int Lista::dimension(void)
 	return ++contador;
 }
 
+/**
+ * Retorna el último elemento en la lista.
+ * 
+ * @return  estructura de tipo nodo.
+ */
 struct nodo * Lista::obtener_ultimo(void)
 {
 	struct nodo * temporal = cabeza;
@@ -161,8 +215,18 @@ struct nodo * Lista::obtener_ultimo(void)
 	return (struct nodo *)temporal;
 }
 
+
+/**
+ * Ordena la lista.
+ *
+ * Este  método ordena la lista usando el algoritmo de
+ * Selection Sort.
+ */
 void Lista::ordenar(void)
 {
+	/**
+	 * pivote
+	 */
 	int minimo;
 
 	for (int i=0; i<dimension()-1; i++)
@@ -175,6 +239,9 @@ void Lista::ordenar(void)
 				minimo = j;
 		}
 
+		/**
+		 * intercambiamos entre el valor actual y el minimo último
+		 */
 		int temporal = obtener_elemento(i)->valor;
 		obtener_elemento(i)->valor = obtener_elemento(minimo)->valor;
 		obtener_elemento(minimo)->valor = temporal;
