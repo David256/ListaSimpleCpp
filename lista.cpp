@@ -1,3 +1,19 @@
+/**
+ * Definición de la clase Lista.
+ *
+ * Esta es una clase que permite, a través de una estructura
+ * de tipo nodo (definida en nodo.h), permite usar diferentes
+ * métodos para agregar elementos nuevos, eliminar un elemento
+ * específico, obtener el tamaño de la lista, obtener un
+ * elemento de una posición específica, imprimir la lista y lo
+ * más importante: ordenar la lista usando diferentes algoritmos
+ * de ordenamiento. Por defecto se usa el algoritmo SelectionSort.
+ *
+ * TODO:
+ * Crear un sistema de respaldo al último valor de la lista, antes
+ * de realizar cualquier ordenamiento.
+ * 
+ */
 #include <iostream>
 #include <string.h>
 #include "nodo.h"
@@ -224,26 +240,85 @@ struct nodo * Lista::obtener_ultimo(void)
  */
 void Lista::ordenar(void)
 {
+	ordenar(SelectionSort);
+}
+
+
+/**
+ * Ordena la lista.
+ *
+ * Este método ordena la lista usando el algoritmo que
+ * se le proporsione a través de un enum de tipo
+ * Ordenador que puede tener los valor:
+ * 
+ * QuickSort, MergeSort, InsertionSort, BubbleSort,
+ * SelectionSort.
+ * 
+ * @param ordenador enum Ordenador
+ */
+void Lista::ordenar(enum Ordenador ordenador)
+{
 	/**
-	 * pivote
+	 * Si ha elegido SelectionSort:
 	 */
-	int minimo;
-
-	for (int i=0; i<dimension()-1; i++)
+	if (ordenador == SelectionSort)
 	{
-		minimo = i;
-
-		for (int j=i+1; j<dimension(); j++)
-		{
-			if (obtener_elemento(j)->valor < obtener_elemento(minimo)->valor)
-				minimo = j;
-		}
-
 		/**
-		 * intercambiamos entre el valor actual y el minimo último
+		 * pivote
 		 */
-		int temporal = obtener_elemento(i)->valor;
-		obtener_elemento(i)->valor = obtener_elemento(minimo)->valor;
-		obtener_elemento(minimo)->valor = temporal;
+		int minimo;
+
+		for (int i=0; i<dimension()-1; i++)
+		{
+			minimo = i;
+
+			for (int j=i+1; j<dimension(); j++)
+			{
+				if (obtener_elemento(j)->valor < obtener_elemento(minimo)->valor)
+					minimo = j;
+			}
+
+			/**
+			 * intercambiamos entre el valor actual y el minimo último
+			 */
+			int temporal = obtener_elemento(i)->valor;
+			obtener_elemento(i)->valor = obtener_elemento(minimo)->valor;
+			obtener_elemento(minimo)->valor = temporal;
+		}
+	}
+
+	/**
+	 * Si ha elegido QuickSort
+	 */
+	else if (ordenador == QuickSort)
+	{
+		// Do thing.
+	}
+
+
+	/**
+	 * Si ha elegido MergeSort
+	 */
+	else if (ordenador == MergeSort)
+	{
+		// Do thing.
+	}
+
+
+	/**
+	 * Si ha elegido InsertionSort
+	 */
+	else if (ordenador == InsertionSort)
+	{
+		// Do thing.
+	}
+
+
+	/**
+	 * Si ha elegido BubbleSort
+	 */
+	else if (ordenador == BubbleSort)
+	{
+		// Do thing.
 	}
 }

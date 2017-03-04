@@ -3,6 +3,14 @@
 
 #include "nodo.h"
 
+enum Ordenador {
+	QuickSort,
+	MergeSort,
+	InsertionSort,
+	BubbleSort,
+	SelectionSort
+};
+
 class Lista
 {
 public:
@@ -16,6 +24,7 @@ public:
 
 	void imprimir(void);
 	void ordenar(void);
+	void ordenar(enum Ordenador);
 
 	int dimension(void);
 
