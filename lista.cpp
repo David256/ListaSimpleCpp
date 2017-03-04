@@ -331,7 +331,26 @@ void Lista::ordenar(enum Ordenador ordenador)
 	 */
 	else if (ordenador == InsertionSort)
 	{
-		// Do thing.
+		if (dimension() == 1)
+		{
+			// «Toda lista de un elemento, está ordenada por defecto».
+			return;
+		}
+
+		struct nodo * temporal = cabeza;
+		for (int i=0; i<dimension()-1; i++)
+		{
+			for (int j=i+1; j<dimension(); j++)
+			{
+				if (obtener_elemento(i)->valor > obtener_elemento(j)->valor)
+				{
+					struct nodo * sacado = obtener_elemento(j);
+					obtener_elemento(j-1)->next = obtener_elemento(j)->next;
+					agregar_elemento(i, sacado);
+					break;
+				}
+			}
+		}
 	}
 
 
