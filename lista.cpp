@@ -15,6 +15,7 @@
  *
  * Fuente de información:
  * https://es.wikipedia.org/wiki/Ordenamiento_por_selecci%C3%B3n
+ * https://es.khanacademy.org/computing/computer-science/algorithms
  * 
  */
 #include <iostream>
