@@ -12,6 +12,9 @@
  * TODO:
  * Crear un sistema de respaldo al último valor de la lista, antes
  * de realizar cualquier ordenamiento.
+ *
+ * Fuente de información:
+ * https://es.wikipedia.org/wiki/Ordenamiento_por_selecci%C3%B3n
  * 
  */
 #include <iostream>
@@ -59,7 +62,7 @@ bool Lista::agregar_elemento(int lugar, struct nodo * n)
 
 	if (lugar > dimension())
 	{
-		cabeza->next = n;
+		obtener_ultimo()->next = n;
 		return true;
 	}
 
@@ -288,7 +291,7 @@ void Lista::ordenar(enum Ordenador ordenador)
 	}
 
 	/**
-	 * Si ha elegido QuickSort
+	 * Si ha elegido QuickSort:
 	 */
 	else if (ordenador == QuickSort)
 	{
@@ -297,7 +300,7 @@ void Lista::ordenar(enum Ordenador ordenador)
 
 
 	/**
-	 * Si ha elegido MergeSort
+	 * Si ha elegido MergeSort:
 	 */
 	else if (ordenador == MergeSort)
 	{
@@ -306,7 +309,7 @@ void Lista::ordenar(enum Ordenador ordenador)
 
 
 	/**
-	 * Si ha elegido InsertionSort
+	 * Si ha elegido InsertionSort:
 	 */
 	else if (ordenador == InsertionSort)
 	{
@@ -315,7 +318,7 @@ void Lista::ordenar(enum Ordenador ordenador)
 
 
 	/**
-	 * Si ha elegido BubbleSort
+	 * Si ha elegido BubbleSort:
 	 */
 	else if (ordenador == BubbleSort)
 	{
