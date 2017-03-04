@@ -359,6 +359,20 @@ void Lista::ordenar(enum Ordenador ordenador)
 	 */
 	else if (ordenador == BubbleSort)
 	{
-		// Do thing.
+		if (dimension() == 1)
+			return;
+
+		for (int i=dimension()-1; i>0; i--)
+		{
+			for (int j=0; j<i; j++)
+			{
+				if (obtener_elemento(j)->valor > obtener_elemento(j+1)->valor)
+				{
+					int temporal = obtener_elemento(j)->valor;
+					obtener_elemento(j)->valor = obtener_elemento(j+1)->valor;
+					obtener_elemento(j+1)->valor = temporal;
+				}
+			}
+		}
 	}
 }
