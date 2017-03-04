@@ -66,6 +66,13 @@ bool Lista::agregar_elemento(int lugar, struct nodo * n)
 		return true;
 	}
 
+	if (lugar == 0)
+	{
+		n->next = cabeza;
+		cabeza = n;
+		return true;
+	}
+
 	if (dimension() == 1)
 	{
 		cabeza->next = n;
@@ -73,8 +80,8 @@ bool Lista::agregar_elemento(int lugar, struct nodo * n)
 	}
 
 	struct nodo * temporal = cabeza;
-	int contador = 0;
-	while (temporal->next != NULL)
+	int contador = 1;
+	while (temporal != NULL)
 	{
 		if (contador == lugar)
 		{
@@ -88,7 +95,6 @@ bool Lista::agregar_elemento(int lugar, struct nodo * n)
 			contador++;
 		}
 	}
-	cabeza = temporal;
 	return true;
 }
 
@@ -104,13 +110,26 @@ bool Lista::eliminar_elemento(int lugar)
 {
 	if (cabeza == NULL)
 		return false;
+
 	if (lugar > dimension())
 		return false;
+
+	if (lugar == 0 && dimension() == 1)
+	{
+		cabeza = NULL;
+		return true;
+	}
+
+	if (lugar == 0)
+	{
+		cabeza = cabeza->next;
+		return true;
+	}
 
 	cout << "Yendo a sacar al elemento número: " << lugar << endl;
 
 	struct nodo * temporal = cabeza;
-	int contador = 0;
+	int contador = 1;
 	while (temporal->next != NULL)
 	{
 		if (contador == lugar)
@@ -129,7 +148,6 @@ bool Lista::eliminar_elemento(int lugar)
 		temporal = temporal->next;
 		contador++;
 	}
-	cabeza = temporal;
 	return true;
 }
 
